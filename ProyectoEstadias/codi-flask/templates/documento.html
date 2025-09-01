@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Documento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styledocu.css') }}">
+</head>
+<body>
+    <div class="banner-index">
+        <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+        <a href="{{ url_for('folios') }}" class="app-name">Volver a Folios</a>
+    </div>
+
+    <div class="document-form">
+
+        <div class="form-group">
+            <label for="folio-numero">Número de Folio:</label>
+            <div id="folio-numero" class="folio-display">{{ folio.numero if folio else '' }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="unidad">Unidad:</label>
+            <select id="unidad">
+                <option value="">Selecciona una unidad</option>
+                {% for unidad in unidades %}
+                    <option value="{{ unidad.id }}">
+                        {{ unidad.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="area">Área:</label>
+            <select id="area">
+                <option value="">Selecciona un área</option>
+                {% for area in areas %}
+                    <option value="{{ area.id }}" data-ui="{{ area.UI }}" data-cc="{{ area.CC }}">
+                        {{ area.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="destinatarios-container">
+            <h3>Destinatarios</h3>
+            <div class="destinatario-select-wrapper">
+                <select id="destinatario" multiple size="5">
+                    {% for dest in destinatarios %}
+                        <option value="{{ dest.id }}" data-nombre="{{ dest.nombre }}" data-cargo="{{ dest.cargo }}">
+                            {{ dest.nombre }} - {{ dest.cargo }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="select-hint">Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples destinatarios</div>
+            </div>
+            <div id="destinatariosSeleccionados" class="chips-container"></div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" value="{{ borrador.asunto if borrador else (folio.asunto if folio else '') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cuerpo">Cuerpo del documento:</label>
+            <textarea id="cuerpo" required>{{ borrador.cuerpo if borrador else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="elaborador">Elaboró:</label>
+            <input type="text" id="elaborador" value="{{ session.get('nombre', '') }}" readonly>
+        </div>
+
+        <div class="action-buttons">
+            <button id="preview-btn" class="btn">Vista Previa</button>
+            <button id="generate-btn" class="btn btn-download">Generar Documento Word</button>
+            <button id="cancel-btn" class="btn btn-cancel">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="document-form">
+        <h3>Vista Previa del Documento</h3>
+        <div id="preview-content" class="preview-content">
+            <!-- Aquí se mostrará la vista previa -->
+        </div>
+    </div>
+
+    <!-- En tu template documento.html, antes de tu JS principal -->
+    <script>
+        const folioId = {{ folio_id | tojson }};
+        const folioData = {{ folio | tojson }};
+        const borradorData = {{ borrador | default('null') | tojson }};
+        const areas = {{ areas | tojson }};
+        const unidades = {{ unidades | tojson }};
+    </script>
+
+    
+    <script src="{{ url_for('static', filename='js/documento.js') }}"></script>
+</body>
+</html>

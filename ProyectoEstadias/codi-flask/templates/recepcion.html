@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Secretaria/o</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesecre.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+   <div class="banner-index">
+        <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+        <a href="{% if session['rol'] == 'usuario' %}
+            {{ url_for('inicio') }}
+         {% elif session['rol'] == 'jefe' %}
+            {{ url_for('jefe') }}
+         {% elif session['rol'] == 'recepcion' %}
+            {{ url_for('recepcion') }}
+         {% elif session['rol'] == 'administrador' %}
+            {{ url_for('administrador') }}
+         {% else %}
+            {{ url_for('login') }}
+         {% endif %}"
+          class="app-name">CoDI
+        </a>
+        <a href="{{ url_for('logout') }}" class="admin-button">Cerrar sesión</a>
+    </div>
+
+  <h1>Bienvenido a Recepción</h1>
+  
+  <a href="{{ url_for('folios') }}" class="document-button">
+    <i class=""></i> Gestión de Folios
+  </a>
+
+  
+  <!-- Tabla para enviar documentos -->
+  <div id="envio-documentos">
+    <h2><i class="fas fa-paper-plane"></i> Documentos</h2>
+    <table id="tablaEnvioDocumentos">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Área</th>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Documento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Fila para nuevo documento -->
+        <tr id="filaNuevoDocumento">
+          <td><input type="text" id="numeroDocumento" placeholder="Número"></td>
+          <td><input type="text" id="areaDocumento" placeholder="Área"></td>
+          <td><input type="text" id="descripcionDocumento" placeholder="Descripción"></td>
+          <td><input type="date" id="fechaEnvio"></td>
+          <td><input type="file" id="archivoEnvio" accept=".pdf"></td>
+          <td class="acciones">
+    
+            <button onclick="guardarNuevoDocumento()" title="Guardar"><i class="fas fa-save"></i></button>
+            <button onclick="limpiarFormulario()" title="Limpiar"><i class="fas fa-eraser"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Paginación para la primera tabla -->
+    <div class="pagination" id="paginacionEnvio">
+        <button id="prevBtnEnvio" onclick="cambiarPagina('envio', -1)">Anterior</button>
+        <span id="pageInfoEnvio">Página 1 de 1</span>
+        <button id="nextBtnEnvio" onclick="cambiarPagina('envio', 1)">Siguiente</button>
+    </div>
+  </div>
+  <!-- Tabla de documentos del área -->
+  <div id="documentos-area">
+    <h2><i class="fas fa-file-alt"></i> Documentos del Área</h2>
+    <table id="tablaDocumentosArea">
+      <thead>
+        <tr>
+          <th>Folio</th>
+          <th>Documento</th>
+          <th>Remitente</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>  
+      </tbody>
+    </table>
+    <!-- Paginación para la segunda tabla -->
+    <div class="pagination" id="paginacionArea">
+        <button id="prevBtnArea" onclick="cambiarPagina('area', -1)">Anterior</button>
+        <span id="pageInfoArea">Página 1 de 1</span>
+        <button id="nextBtnArea" onclick="cambiarPagina('area', 1)">Siguiente</button>
+    </div>
+  </div>
+
+  
+
+  <!-- Visor de PDF -->
+  <div id="pdf-viewer-container">
+    <div id="pdf-viewer-toolbar">
+      <div>
+        <button class="pdf-toolbar-button" onclick="pdfPrevPage()"><i class="fas fa-arrow-left"></i> Anterior</button>
+        <button class="pdf-toolbar-button" onclick="pdfNextPage()">Siguiente <i class="fas fa-arrow-right"></i></button>
+        <span id="pdf-page-info">Página 1 de 1</span>
+      </div>
+      <div>
+        <button class="pdf-toolbar-button" onclick="pdfZoomOut()"><i class="fas fa-search-minus"></i> Alejar</button>
+        <button class="pdf-toolbar-button" onclick="pdfZoomIn()"><i class="fas fa-search-plus"></i> Acercar</button>
+        <button class="pdf-toolbar-button" onclick="pdfPrint()"><i class="fas fa-print"></i> Imprimir</button>
+        <button class="pdf-toolbar-button" onclick="pdfDownload()"><i class="fas fa-download"></i> Descargar</button>
+      </div>
+      <button id="pdf-viewer-close" onclick="closePdfViewer()"><i class="fas fa-times"></i> Cerrar</button>
+    </div>
+    <div id="pdf-viewer-content">
+      <canvas id="pdf-canvas"></canvas>
+    </div>
+  </div>
+
+
+
+ <script src="{{ url_for('static', filename='js/JSSECRE.js') }}"></script>
+</body>
+</html>

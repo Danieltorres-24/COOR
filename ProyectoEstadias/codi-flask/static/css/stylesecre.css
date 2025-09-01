@@ -1,0 +1,324 @@
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: rgb(0, 0, 0);
+    }
+
+    h1 {
+      color: #000000;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+    }
+
+    button:hover {
+      background-color: #e8e8e8;
+    }
+
+    .app-name {
+      color: white;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .admin-button {
+      background-color: #e74c3c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .admin-button:hover {
+      background-color: #c0392b;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /*--------------Boton de folios------------------*/
+    .document-button {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white !important;
+      text-decoration: none !important;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .document-button:hover {
+      background-color: #3e8e41;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: white !important;
+    }
+
+    .document-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .document-button i {
+      margin-right: 8px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #2c5045;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #3498db;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+
+    tr:hover {
+      background-color: #e3f2fd;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="file"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .acciones {
+      display: flex;
+      gap: 5px;
+    }
+
+    .btn-guardar {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .btn-editar {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .btn-eliminar {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-limpiar {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    /* --------------- Paginación --------------- */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 10px 0;
+    }
+
+    .pagination button {
+      padding: 8px 16px;
+      background-color: #4CAF50; 
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .pagination button:hover {
+      background-color: #45a049; 
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .pagination button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    }
+
+    .pagination button:disabled {
+      background-color: #cccccc;
+      color: #666666;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    #pageInfoRegistros, #pageInfoArea {
+      padding: 8px 16px;
+      background-color: #2E7D32;
+      color: white;
+      border-radius: 4px;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .section-container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #documentos-area table {
+      width: 100%;
+      margin: 20px auto 0 auto;
+    }
+
+    #documentos-area th {
+      background-color: #117413;
+      color: #ffffff;
+    }
+
+    #documentos-area td {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+    }
+
+    .empty-row {
+      text-align: center;
+      color: #7f8c8d;
+      padding: 1rem;
+    }
+
+    #pdf-viewer-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    #pdf-viewer-toolbar {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #pdf-viewer-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    #pdf-canvas {
+      max-width: 100%;
+      max-height: 100%;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .pdf-toolbar-button {
+      background-color: #555;
+      color: white;
+      margin: 0 5px;
+    }
+
+    #pdf-viewer-close {
+      background-color: #ff4444;
+      color: white;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+      .document-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        display: block;
+        margin: 15px auto;
+        width: 90%;
+        max-width: 250px;
+      }
+      
+      .pagination {
+        flex-wrap: wrap;
+      }
+      
+      .pagination button, #pageInfo {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+      
+      .acciones {
+        flex-direction: column;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }

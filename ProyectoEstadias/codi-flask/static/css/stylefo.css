@@ -1,0 +1,569 @@
+:root {
+    --primary-color: #4CAF50;
+    --primary-dark: #3d8b40;
+    --secondary-color: #2196F3;
+    --danger-color: #f44336;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #2c3e50;
+    --text-color: #495057;
+    --border-radius: 6px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --------------- Contenido principal --------------- */
+.main-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px 0;
+    color: var(--dark-gray);
+    font-size: 2.2rem;
+    font-weight: 500;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+/* Spinner de carga */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notificaciones */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Deshabilitar botones durante carga */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+}
+
+/* Formulario */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.tipo-container {
+    margin: 15px 0;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+        .agregar-Documento {
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .tipo-container {
+            margin: 10px 0;
+        }
+        .tipo-container label {
+            margin-right: 10px;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 5px 10px;
+        }
+
+/* --------------- Formulario de agregar --------------- */
+.agregar-Documento {
+    background-color: white;
+    padding: 25px;
+    margin: 0 auto 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 1000px;
+    position: relative;
+}
+
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Estilos para el formulario de búsqueda */
+#search-form {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Estilos para el input de búsqueda */
+#search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+/* Estilo al enfocar el input de búsqueda */
+#search-input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Estilos para el botón de búsqueda */
+#search-form button {
+    padding: 12px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+/* Efecto hover para el botón de búsqueda */
+#search-form button:hover {
+    background: var(--primary-dark);
+}
+
+/* --------------- Formulario de agregar con mejor espaciado --------------- */
+.agregar-Documento {
+    background-color: white;
+    padding: 25px;
+    margin: 0 auto 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 1000px;
+}
+
+.tipo-container {
+    margin: 15px 0; /* Espacio entre el contenedor de tipo y otros inputs */
+}
+
+.tipo-container label {
+    margin-right: 15px; /* Espacio entre las opciones de tipo */
+}
+
+.agregar-Documento input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin-bottom: 15px; /* Espacio entre inputs */
+}
+
+.agregar-Documento input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+#agregarBtn {
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+#agregarBtn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Contenedor de filas con mayor separación vertical */
+.input-rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio vertical entre grupos de inputs */
+}
+
+/* Fila de inputs con espacio horizontal */
+.input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio horizontal entre inputs */
+    margin-bottom: 0; /* Eliminamos el margin-bottom anterior */
+}
+
+/* Cada grupo de input con espacio inferior */
+.input-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 8px; /* Espacio adicional bajo cada input */
+}
+
+.agregar-Documento input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin-top: 8px; /* Espacio entre label y input */
+}
+
+.agregar-Documento input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* Etiquetas para los inputs (si decides agregarlas) */
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.button-container {
+    margin-top: 20px;
+    text-align: right;
+}
+
+#agregarBtn {
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+#agregarBtn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------- Tabla de folios --------------- */
+.table-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+table th {
+    background-color: var(--light-gray);
+    font-weight: 600;
+    color: var(--dark-gray);
+    position: sticky;
+    top: 0;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:hover {
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+/* Column widths */
+table th:nth-child(1), table td:nth-child(1) { width: 10%; }
+table th:nth-child(2), table td:nth-child(2) { width: 20%; }
+table th:nth-child(3), table td:nth-child(3) { width: 25%; }
+table th:nth-child(4), table td:nth-child(4) { width: 12%; }
+table th:nth-child(5), table td:nth-child(5) { width: 10%; }
+table th:nth-child(6), table td:nth-child(6) { width: 10%; }
+table th:nth-child(7), table td:nth-child(7) { width: 13%; }
+
+/* -------------- Botones de acción --------------- */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons button:first-child {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.action-buttons button:last-child {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.doc-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.doc-link:hover {
+    background-color: #e1f0ff;
+    text-decoration: underline;
+}
+
+.doc-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.documento-cell {
+    text-align: center;
+}
+
+/* --------------- Paginación --------------- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    background-color: rgb(94, 167, 79);
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.pagination button:hover {
+    background-color: var(--light-gray);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#pageInfo {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+/* --------------- Responsive --------------- */
+@media (max-width: 992px) {
+    .agregar-Documento {
+        padding: 20px;
+    }
+    
+    table th, table td {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+        margin: 20px 0;
+    }
+    
+    #search-form {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .input-group {
+        min-width: 100%;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    table {
+        font-size: 0.9rem;
+        min-width: 700px;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .agregar-Documento {
+        padding: 15px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .action-buttons button {
+        width: 100%;
+    }
+
+
+}
+

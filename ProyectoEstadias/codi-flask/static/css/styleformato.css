@@ -1,0 +1,176 @@
+/* ============================= */
+/* Estilos generales */
+/* ============================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* ============================= */
+/* Banner superior */
+/* ============================= */
+.banner-index {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 25px;
+    background: linear-gradient(90deg, #6b0d0d, #450808);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+}
+
+.app-name {
+    font-size: 1.6rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.admin-button {
+    margin-left: auto;
+    padding: 10px 22px;
+    background-color: #0a1cf5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+.admin-button:hover {
+    background-color: #0816b3;
+    transform: translateY(-2px);
+}
+
+/* ============================= */
+/* Contenedor principal - ALINEADO A LA IZQUIERDA */
+/* ============================= */
+.container {
+    margin: 40px auto;
+    max-width: 780px;
+    background: #ffffff;
+    padding: 45px 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    text-align: left;
+}
+
+/* ============================= */
+/* Título - ALINEADO A LA IZQUIERDA */
+/* ============================= */
+.container h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: 800;
+    text-align: left;
+    position: relative;
+    margin-left: 0;
+}
+
+/* Línea decorativa debajo del título - ALINEADA A LA IZQUIERDA */
+.container h2::after {
+    content: "";
+    display: block;
+    margin: 10px 0 0 0; /* Cambiado de "auto" a "0" para alinear a la izquierda */
+    width: 60px;
+    height: 3px;
+    background: #007bff;
+    border-radius: 2px;
+}
+
+/* ============================= */
+/* Texto de instrucciones - ALINEADO A LA IZQUIERDA */
+/* ============================= */
+.container p {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.7;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* ============================= */
+/* Botones - ALINEADOS A LA IZQUIERDA */
+/* ============================= */
+/* ============================= */
+/* Botones - CENTRADOS */
+/* ============================= */
+.botones {
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    gap: 20px; /* espacio entre botones */
+    flex-wrap: wrap; /* se acomodan si no caben */
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    min-width: 150px; /* ancho mínimo uniforme */
+}
+
+/* Botón principal */
+.btn-primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background: #28a745;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #1e7e34;
+    transform: translateY(-2px);
+}
+
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+@media (max-width: 600px) {
+    .banner-index {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-button {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .container {
+        padding: 30px 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 10px 0;
+    }
+}

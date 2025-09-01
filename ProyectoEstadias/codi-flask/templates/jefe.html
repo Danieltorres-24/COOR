@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoDI - Panel de Jefe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylejefe.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación superior -->
+    <div class="admin-navbar">
+        <div class="navbar-left">
+            <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+            <a href="{% if session['rol'] == 'usuario' %}
+            {{ url_for('inicio') }}
+         {% elif session['rol'] == 'jefe' %}
+            {{ url_for('jefe') }}
+         {% elif session['rol'] == 'recepcion' %}
+            {{ url_for('recepcion') }}
+         {% elif session['rol'] == 'administrador' %}
+            {{ url_for('administrador') }}
+         {% else %}
+            {{ url_for('login') }}
+         {% endif %}"
+          class="app-name">CoDI
+        </a>
+            <span class="user-role">Panel de Jefe</span>
+        </div>
+        <div class="navbar-right">
+            <div class="user-dropdown">
+                <button class="user-btn">
+                    <i class="fas fa-user-circle"></i>
+                    {{ session['nombre'] }}
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fas fa-user"></i> Mi perfil</a>
+                    <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+                    <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú Principal</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a href="#">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('editar_documento') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Crear Documento</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('mostrar_destinatarios') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Destinatarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('folios') }}">
+                    <i class="fas fa-list-ol"></i>
+                    <span>Gestión de Folios</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Información del usuario -->
+        <div class="profile-section">
+            <div class="profile-header">
+                <h2><i class="fas fa-user-tie"></i> Información del Jefe</h2>
+            </div>
+            <div class="profile-content">
+                <div class="profile-pic">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Foto de perfil">
+                </div>
+                <div class="profile-info">
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-user"></i> Nombre:</span>
+                        <span class="info-value">{{ session['nombre'] }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-envelope"></i> Correo:</span>
+                        <span class="info-value">{{ session['correo'] }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-briefcase"></i> Cargo:</span>
+                        <span class="info-value">{{ session['cargo'] }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-building"></i> Área:</span>
+                        <span class="info-value">{{ session['area'] }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-id-card"></i> Siglas:</span>
+                        <span class="info-value">{{ session['siglas'] }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documentos creados por el jefe -->
+        <div class="documents-section">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> Documentos Creados por el Jefe</h2>
+                <a href="#" class="view-all">Ver todos</a>
+            </div>
+            <div class="documents-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Documento</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FOL-2023-101</td>
+                            <td>Plan de trabajo anual</td>
+                            <td><span class="status approved">Aprobado</span></td>
+                            <td>01/01/2023</td>
+                            <td class="actions">
+                                <button class="btn-view"><i class="fas fa-file-download"></i> Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>FOL-2023-102</td>
+                            <td>Informe de gestión</td>
+                            <td><span class="status archived">Archivado</span></td>
+                            <td>15/02/2023</td>
+                            <td class="actions">
+                                <button class="btn-view"><i class="fas fa-file-download"></i> Descargar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Documentos generados en toda el área -->
+        <div class="documents-section">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> Documentos Generados en el Área</h2>
+                <a href="#" class="view-all">Ver todos</a>
+            </div>
+            <div class="documents-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Documento</th>
+                            <th>Remitente</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FOL-2023-201</td>
+                            <td>Propuesta de presupuesto</td>
+                            <td>Área Financiera</td>
+                            <td>10/03/2023</td>
+                            <td class="actions">
+                                <button class="btn-view"><i class="fas fa-file-download"></i> Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>FOL-2023-202</td>
+                            <td>Informe de auditoría</td>
+                            <td>Área de Auditoría</td>
+                            <td>12/03/2023</td>
+                            <td class="actions">
+                                <button class="btn-view"><i class="fas fa-file-download"></i> Descargar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/JSSECRE.js') }}"></script>
+</body>
+</html>

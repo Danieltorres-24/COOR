@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinatarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleDes.css') }}">
+</head>
+<body>
+    <div class="banner-index">
+        <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+        <a href="{% if session['rol'] == 'usuario' %}
+            {{ url_for('inicio') }}
+         {% elif session['rol'] == 'jefe' %}
+            {{ url_for('jefe') }}
+         {% elif session['rol'] == 'recepcion' %}
+            {{ url_for('recepcion') }}
+         {% elif session['rol'] == 'administrador' %}
+            {{ url_for('administrador') }}
+         {% else %}
+            {{ url_for('login') }}
+         {% endif %}"
+          class="app-name">CoDI
+        </a>
+        <a href="{{ url_for('editar_documento') }}" class="admin-button">Crear Documento</a>
+    </div>
+
+
+    <h1>Bienvenido a Destinatarios</h1>
+
+    <div class="agregar-destinatario">
+        <form id="search-form">
+            <input type="search" id="search-input" placeholder="Buscar por nombre o cargo">
+            <button type="submit">Buscar</button>
+        </form>
+        <input type="text" placeholder="Nombre completo" id="nombreInput">
+        <input type="text" placeholder="Cargo" id="cargoInput">
+        <button id="agregarBtn">Agregar</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+                <th>Crear</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevBtn">Anterior</button>
+        <span id="pageInfo">Página 1</span>
+        <button id="nextBtn">Siguiente</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/JSDESTINA.js') }}"></script>
+</body>
+</html>

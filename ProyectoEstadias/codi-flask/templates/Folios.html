@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folios</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylefo.css') }}">
+
+</head>
+<body>
+    <div class="banner-index">
+        <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+        <a href="{% if session['rol'] == 'usuario' %}
+            {{ url_for('inicio') }}
+         {% elif session['rol'] == 'jefe' %}
+            {{ url_for('jefe') }}
+         {% elif session['rol'] == 'recepcion' %}
+            {{ url_for('recepcion') }}
+         {% elif session['rol'] == 'administrador' %}
+            {{ url_for('administrador') }}
+         {% else %}
+            {{ url_for('login') }}
+         {% endif %}"
+          class="app-name">CoDI
+        </a>
+    </div>
+
+    <h1>Bienvenido a Folios</h1>
+    <div class="agregar-Documento">
+        <div class="input-group">
+            <input type="text" placeholder="Dirigido a" id="dirigidoInput" required>
+        </div>
+        <div class="input-group">
+            <input type="text" placeholder="Asunto" id="asuntoInput" required>
+        </div>
+        <div class="tipo-container">
+            <label>Tipo:</label>
+            <label>
+                <input type="radio" name="tipo" value="interno" checked> Interno
+            </label>
+            <label>
+                <input type="radio" name="tipo" value="externo"> Externo
+            </label>
+        </div>
+        <button id="agregarBtn">Agregar</button>
+    </div>
+
+    <div class="search-container">
+        <form id="search-form">
+            <input type="search" id="search-input" placeholder="Buscar Folios" required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Dirigido a</th>
+                <th>Asunto</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+                <th>Documento</th>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevBtn" disabled>Anterior</button>
+        <span id="pageInfo">Página 1</span>
+        <button id="nextBtn">Siguiente</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/JSFolio.js') }}"></script>
+</body>
+</html>

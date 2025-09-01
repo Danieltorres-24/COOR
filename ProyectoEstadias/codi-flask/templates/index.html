@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoDI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="banner-index">
+        <img src="https://cdn-icons-png.flaticon.com/128/6114/6114700.png" alt="Logo" class="logo">
+        <a href="{% if session['rol'] == 'usuario' %}
+            {{ url_for('inicio') }}
+         {% elif session['rol'] == 'jefe' %}
+            {{ url_for('jefe') }}
+         {% elif session['rol'] == 'recepcion' %}
+            {{ url_for('recepcion') }}
+         {% elif session['rol'] == 'administrador' %}
+            {{ url_for('administrador') }}
+         {% else %}
+            {{ url_for('login') }}
+         {% endif %}"
+          class="app-name">CoDI
+        </a>
+        <a href="{{ url_for('logout') }}" class="admin-button">Cerrar sesión</a>
+    </div>
+
+    <div class="contenedor-usuario">
+    <div class="perfil-usuario">
+        <h1 class="nombre-usuario">{{ session['nombre'] }}</h1>
+        <div class="detalles-usuario">
+            <div class="info-item">
+                <span class="info-label">Correo:</span>
+                <span class="info-value">{{ session['correo'] }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Cargo:</span>
+                <span class="info-value">{{ session['cargo'] }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Siglas:</span>
+                <span class="info-value">{{ session['siglas'] }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Área:</span>
+                <span class="info-value">{{ session['area'] }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <a href="{{ url_for('formatos') }}" class="crear-documento-btn">Formatos</a>
+    <a href="{{ url_for('mostrar_destinatarios') }}" class="Destinatarios">Destinatarios</a>
+    <a href="{{ url_for('folios') }}" class="Folios">Folios</a>
+
+    <div class="documentos-container">
+        <h2>Registro de Documentos</h2>
+        <table class="tabla-documentos">
+            <thead>
+                <tr>
+                    <th>Nombre del Documento</th>
+                    <th>Área</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span class="estado-documento activo">Activo</span></td>
+                    <td class="acciones">
+                        <a href="#">Ver</a>
+                        <a href="#">Editar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span class="estado-documento archivado">Archivado</span></td>
+                    <td class="acciones">
+                        <a href="#">Ver</a>
+                        <a href="#">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="{{ url_for('static', filename='js/JS.js') }}"></script>
+</body>
+</html>
